@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { fetchMovieDetails } from "../api";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import css from './MovieDetailsPage.module.css'
 
@@ -12,7 +12,7 @@ export default function MovieDetailsPage() {
     const [score, setScore] = useState(0);
 
     const location = useLocation()
-    const back = useRef(location.state);
+    const back = useRef(location.state ?? "/");
 
     const params = useParams();
     const { poster_path, title, release_date, vote_average, overview, genres } = movie;
@@ -45,7 +45,7 @@ export default function MovieDetailsPage() {
 
     return (
         <>
-            <Link className={css.back} to={back.current ?? "/"}><IoIosArrowRoundBack size={15} /> Go back</Link>
+            <NavLink className={css.back} to={back.current}><IoIosArrowRoundBack size={15} /> Go back</NavLink>
             {Object.keys(movie).length !== 0 &&
                 <>
                     <div className={css.box}>
