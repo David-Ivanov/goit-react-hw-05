@@ -44,3 +44,11 @@
     border-top: 2px solid rgba(0, 0, 0, 0.401);
     border-bottom: 2px solid rgba(0, 0, 0, 0.401);
 }
+
+.link {
+    color: black;
+}
+
+.clicked {
+    color: orangered;
+}

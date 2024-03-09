@@ -3,6 +3,7 @@ import { fetchMovieDetails } from "../api";
 import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import css from './MovieDetailsPage.module.css'
+import clsx from "clsx";
 
 export default function MovieDetailsPage() {
     const [movie, setMovie] = useState({});
@@ -43,9 +44,13 @@ export default function MovieDetailsPage() {
         setScore(Math.floor(vote_average * 10));
     }, [release_date, vote_average]);
 
+    const buildNavLink = ({ isActive }) => {
+        return clsx(css.link, isActive && css.clicked);
+    }
+
     return (
         <>
-            <NavLink className={css.back} to={back.current}><IoIosArrowRoundBack size={15} /> Go back</NavLink>
+            <Link className={css.back} to={back.current}><IoIosArrowRoundBack size={15} /> Go back</Link>
             {Object.keys(movie).length !== 0 &&
                 <>
                     <div className={css.box}>
@@ -70,8 +75,8 @@ export default function MovieDetailsPage() {
                         <p>Additional information</p>
 
                         <ul>
-                            <li><Link to="credits">Cast</Link></li>
-                            <li><Link to="reviews">Reviews</Link></li>
+                            <li><NavLink className={buildNavLink} to="credits">Cast</NavLink></li>
+                            <li><NavLink className={buildNavLink} to="reviews">Reviews</NavLink></li>
                         </ul>
                     </div>
 
