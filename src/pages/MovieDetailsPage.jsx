@@ -45,7 +45,7 @@ export default function MovieDetailsPage() {
 
     return (
         <>
-            <Link className={css.back} to={back.current}><IoIosArrowRoundBack size={15} /> Go back</Link>
+            <Link className={css.back} to={back.current ?? "/"}><IoIosArrowRoundBack size={15} /> Go back</Link>
             {Object.keys(movie).length !== 0 &&
                 <>
                     <div className={css.box}>
