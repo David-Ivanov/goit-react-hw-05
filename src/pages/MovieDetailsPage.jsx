@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { fetchMovieDetails } from "../api";
 import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
@@ -80,7 +80,9 @@ export default function MovieDetailsPage() {
                         </ul>
                     </div>
 
-                    <Outlet />
+                    <Suspense fallback={<p>loading...</p>}>
+                        <Outlet />
+                    </Suspense>
                 </>
             }
 
